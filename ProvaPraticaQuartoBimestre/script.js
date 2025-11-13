@@ -24,6 +24,14 @@ function renderizarTabela() {
         tabela.appendChild(tr);
     });
 
+    // --- SIMULAÇÃO DA CHAMADA DA API (Método: GET) ---
+    /*
+    fetch('https://api.exemplo.com/transacoes', { method: 'GET' })
+        .then(response => response.json())
+        .then(data => console.log('Transações carregadas:', data))
+        .catch(error => console.error('Erro na chamada da API:', error));
+    */
+    // --- FIM DA SIMULAÇÃO ---
 }
 
 function adicionarTransacao(e) {
@@ -52,7 +60,18 @@ function adicionarTransacao(e) {
     renderizarTabela();
     form.reset();
 
-
+    // --- SIMULAÇÃO DA CHAMADA DA API (Método: POST) ---
+    /*
+    fetch('https://api.exemplo.com/transacoes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(novaTransacao)
+    })
+    .then(response => response.json())
+    .then(data => console.log('Transação criada com sucesso:', data))
+    .catch(error => console.error('Erro na chamada da API:', error));
+    */
+    // --- FIM DA SIMULAÇÃO ---
 }
 
 function editarTransacao(id) {
@@ -72,19 +91,38 @@ function salvarEdicao(id, descricao, valor, tipo, data) {
         form.reset();
         document.getElementById('idTransacao').value = "";
 
-
+        // --- SIMULAÇÃO DA CHAMADA DA API (Método: PUT) ---
+        /*
+        fetch(`https://api.exemplo.com/transacoes/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(transacoes[index])
+        })
+        .then(response => response.json())
+        .then(data => console.log('Transação atualizada:', data))
+        .catch(error => console.error('Erro na chamada da API:', error));
+        */
+        // --- FIM DA SIMULAÇÃO ---
     }
 }
 
+// Função DELETE - exclui transação
 function deletarTransacao(id) {
     if (confirm("Deseja realmente excluir esta transação?")) {
         transacoes = transacoes.filter(t => t.id !== id);
         renderizarTabela();
 
-
+        // --- SIMULAÇÃO DA CHAMADA DA API (Método: DELETE) ---
+        /*
+        fetch(`https://api.exemplo.com/transacoes/${id}`, {
+            method: 'DELETE'
+        })
+        .then(() => console.log('Transação excluída com sucesso.'))
+        .catch(error => console.error('Erro na chamada da API:', error));
+        */
+        // --- FIM DA SIMULAÇÃO ---
     }
 }
 
-// Inicializa
 form.addEventListener('submit', adicionarTransacao);
 renderizarTabela();
